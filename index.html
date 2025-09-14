@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Configurador Artime</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 20px;
+    }
+    #configurador {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    #configurador img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    .opciones {
+      margin: 15px 0;
+    }
+    select, button {
+      padding: 8px 12px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #222;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>Configura tu Reloj Artime</h1>
+  <p>Prueba diferentes combinaciones de caja, dial, agujas y correa.</p>
+
+  <div id="configurador">
+    <img id="caja" src="cajas/acero.png">
+    <img id="dial" src="diales/negro.png">
+    <img id="agujas" src="agujas/plata.png">
+    <img id="correa" src="correas/jubilee.png">
+  </div>
+
+  <div class="opciones">
+    <label>Caja:</label>
+    <select onchange="document.getElementById('caja').src=this.value">
+      <option value="cajas/acero.png">Acero</option>
+      <option value="cajas/oro.png">Oro</option>
+    </select>
+  </div>
+
+  <div class="opciones">
+    <label>Dial:</label>
+    <select onchange="document.getElementById('dial').src=this.value">
+      <option value="diales/negro.png">Negro</option>
+      <option value="diales/verde.png">Verde</option>
+    </select>
+  </div>
+
+  <div class="opciones">
+    <label>Agujas:</label>
+    <select onchange="document.getElementById('agujas').src=this.value">
+      <option value="agujas/plata.png">Plata</option>
+      <option value="agujas/doradas.png">Doradas</option>
+    </select>
+  </div>
+
+  <div class="opciones">
+    <label>Correa:</label>
+    <select onchange="document.getElementById('correa').src=this.value">
+      <option value="correas/jubilee.png">Jubilee</option>
+      <option value="correas/cuero.png">Cuero</option>
+    </select>
+  </div>
+
+  <button onclick="descargarImagen()">📸 Descargar configuración</button>
+
+  <!-- Librería para capturar el div -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    function descargarImagen() {
+      const configurador = document.getElementById("configurador");
+      html2canvas(configurador).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "reloj-artime.png";
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+  </script>
+</body>
+</html>
