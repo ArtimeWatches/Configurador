@@ -2,109 +2,97 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurador Artime</title>
+  <title>Configurador Nautilus</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: #f8f8f8;
-      margin: 0;
-      padding: 20px;
+      background: #f5f5f5;
     }
-    #configurador {
+    .configurador {
       position: relative;
       width: 300px;
       height: 300px;
       margin: 20px auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-    #configurador img {
+    .configurador img {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
     }
-    .opciones {
-      margin: 15px 0;
-    }
-    select, button {
-      padding: 8px 12px;
-      font-size: 16px;
-      margin: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #222;
-      color: white;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    button:hover {
-      background: #444;
+    select {
+      margin: 10px;
+      padding: 5px;
     }
   </style>
 </head>
 <body>
-  <h1>Configura tu Reloj Artime</h1>
-  <p>Prueba diferentes combinaciones de caja, dial, agujas y correa.</p>
+  <h1>Configura tu Nautilus</h1>
 
-  <div id="configurador">
-    <img id="caja" src="cajas/acero.png">
-    <img id="dial" src="diales/negro.png">
-    <img id="agujas" src="agujas/plata.png">
-    <img id="correa" src="correas/jubilee.png">
+  <div class="configurador">
+    <img id="caja" src="cajas/acero.png" alt="Caja">
+    <img id="dial" src="diales/tiffany.png" alt="Dial">
+    <img id="manecillas" src="manecillas/acero.png" alt="Manecillas">
+    <img id="correa" src="correas/acero.png" alt="Correa">
   </div>
 
-  <div class="opciones">
+  <!-- Menús -->
+  <div>
     <label>Caja:</label>
-    <select onchange="document.getElementById('caja').src=this.value">
+    <select id="selectCaja">
       <option value="cajas/acero.png">Acero</option>
-      <option value="cajas/oro.png">Oro</option>
+      <option value="cajas/negro.png">Negro</option>
+      <option value="cajas/oro-rosa.png">Oro rosa</option>
     </select>
   </div>
 
-  <div class="opciones">
+  <div>
     <label>Dial:</label>
-    <select onchange="document.getElementById('dial').src=this.value">
-      <option value="diales/negro.png">Negro</option>
-      <option value="diales/verde.png">Verde</option>
+    <select id="selectDial">
+      <option value="diales/tiffany.png">Tiffany</option>
     </select>
   </div>
 
-  <div class="opciones">
-    <label>Agujas:</label>
-    <select onchange="document.getElementById('agujas').src=this.value">
-      <option value="agujas/plata.png">Plata</option>
-      <option value="agujas/doradas.png">Doradas</option>
+  <div>
+    <label>Manecillas:</label>
+    <select id="selectManecillas">
+      <option value="manecillas/acero.png">Acero</option>
+      <option value="manecillas/negro.png">Negro</option>
+      <option value="manecillas/oro-rosa.png">Oro rosa</option>
     </select>
   </div>
 
-  <div class="opciones">
+  <div>
     <label>Correa:</label>
-    <select onchange="document.getElementById('correa').src=this.value">
-      <option value="correas/jubilee.png">Jubilee</option>
-      <option value="correas/cuero.png">Cuero</option>
+    <select id="selectCorrea">
+      <option value="correas/acero.png">Acero</option>
+      <option value="correas/negro.png">Negro</option>
+      <option value="correas/oro-rosa.png">Oro rosa</option>
+      <option value="correas/cuero-azul.png">Cuero Azul</option>
+      <option value="correas/cuero-marron.png">Cuero Marrón</option>
+      <option value="correas/cuero-negro.png">Cuero Negro</option>
     </select>
   </div>
 
-  <button onclick="descargarImagen()">📸 Descargar configuración</button>
-
-  <!-- Librería para capturar el div -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script>
-    function descargarImagen() {
-      const configurador = document.getElementById("configurador");
-      html2canvas(configurador).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "reloj-artime.png";
-        link.href = canvas.toDataURL();
-        link.click();
-      });
-    }
+    const caja = document.getElementById("caja");
+    const dial = document.getElementById("dial");
+    const manecillas = document.getElementById("manecillas");
+    const correa = document.getElementById("correa");
+
+    document.getElementById("selectCaja").addEventListener("change", e => {
+      caja.src = e.target.value;
+    });
+    document.getElementById("selectDial").addEventListener("change", e => {
+      dial.src = e.target.value;
+    });
+    document.getElementById("selectManecillas").addEventListener("change", e => {
+      manecillas.src = e.target.value;
+    });
+    document.getElementById("selectCorrea").addEventListener("change", e => {
+      correa.src = e.target.value;
+    });
   </script>
 </body>
 </html>
